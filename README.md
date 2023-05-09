@@ -1,2 +1,2 @@
 # foliocrop
-folio croper
+圖版裁切

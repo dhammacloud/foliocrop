@@ -1,0 +1,19 @@
+{
+  "name": "foliocrop",
+  "version": "1.0.0",
+  "description": "圖版裁切",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "esbuild": "^0.17.18",
+    "esbuild-svelte": "^0.7.3",
+    "sharp": "^0.32.1",
+    "svelte": "^3.59.0"
+  }
+}
