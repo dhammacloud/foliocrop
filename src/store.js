@@ -14,7 +14,7 @@ export const selectedframe=writable(0);
 export const verticalstrip=writable(5);
 export const horizontalstrip=writable(17);
 
-export function defaultframe(idx=0){return [ 1030*(2-idx)+186,139,950,2120]};
+export function defaultframe(idx=0){return [ 1030*(2-idx)+186,139,950,2180]};
 export const caltotalframe=()=>{
     const imgs=get(images);
     let out=0;

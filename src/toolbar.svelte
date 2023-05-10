@@ -101,7 +101,7 @@ function handleKeydown(evt) {
     if (evt.srcElement.nodeName=='INPUT' || evt.srcElement.nodeName=='TEXTAREA'
     || evt.srcElement.nodeName=='BUTTON') return;
 
-    if (alt && key=='n') nextimage();
+    if (alt && key=='n' || key=='enter') nextimage();
     else if (alt && key=='p') previmage();
     else if (alt && key=='o'&&!$dirty) getDir();
     else if (alt && key=='s'&& $dirty) save();
@@ -112,7 +112,7 @@ const save=()=>{
     selectimage(0);//make sure all frame is saved
     const data=genjson();
     dirty.set(false);
-    const outfn=fileprefix+ '.json';
+    const outfn=fileprefix.replace(/\.[a-z]+$/,'')+'.json';
     createBrowserDownload(outfn,data);
 }
 const reset=()=>{
