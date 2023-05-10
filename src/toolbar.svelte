@@ -105,6 +105,7 @@ function handleKeydown(evt) {
     else if (alt && key=='p') previmage();
     else if (alt && key=='o'&&!$dirty) getDir();
     else if (alt && key=='s'&& $dirty) save();
+    else if (alt && key=='d') deleteframe();
     else if (key=="arrowdown" || key=="arrowup" ||key=="arrowright" || key=="arrowleft") handleFrameMove(evt);
 }
 
