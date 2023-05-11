@@ -132,12 +132,12 @@ const deleteframe=()=>{
 }
 </script>
 <svelte:window on:keydown={handleKeydown}/>
-<button title="Alt O, Open Folder" disabled={$dirty} on:click={getDir}>📁</button>
+<!-- <button title="Alt O, Open Folder" disabled={$dirty} on:click={getDir}>📁</button> -->
 <button title="Alt Z, Open Zip" disabled={$dirty} on:click={getZip}>Zip</button>
 <button title="Alt S, Save" disabled={!$dirty} on:click={save}>💾</button>
 <!-- <button on:click={previmage}>Prev</button> -->
 <!-- <button title="Alt N" on:click={nextimage}>下個</button> -->
-<br/><button title="Alt R" on:click={reset}>♻️</button>
+<button title="Alt R" on:click={reset}>♻️</button>
 <button title="Alt D" on:click={deleteframe}>➖</button>
 {$totalframe}
 
