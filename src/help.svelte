@@ -4,7 +4,7 @@
 📁 打開文件夾(Alt-O)  Zip 打開壓縮檔(Alt-Z)  💾 下載座標檔(Alt-S)
 ♻️  重置圖框 (Alt-R)  ➖ 刪除圖框(Alt-D)        目前圖框數
 
-<a href="https://www.youtube.com/watch?v=9EoWwk7g-so" target="_new">操作示範影片</a>
+<a href="https://www.youtube.com/watch?v=UvtJITtLz1c" target="_new">操作示範影片</a>
 
 點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。
 上下左右鍵移動圖框（一個或全部），同時按Alt最小移動，按Ctrl更快移動。
@@ -15,7 +15,7 @@
 限 Full HD 解析度(1920x1080)。
 建議 F11 進入全螢幕模式。先按 Ctrl + - 調整好瀏覽器的解析度，之後就不要再修改。
 
-2023.5.9 （模版永樂北藏）
+2023.5.9 （模版永樂北藏：熟練工每分鐘8拍，24框）
 </pre>
 <style>
     pre {font-size:150%}
