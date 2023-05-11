@@ -35,6 +35,7 @@ async function getDir() {
     }
   }
   out.sort(sortfilename );
+  if (out.length>2) out[out.length-1].frames=[];//last page has no frame
   nimage.set(0);
   images.set(out);
   fileprefix=dirHandle.name;
@@ -52,6 +53,7 @@ async function getZip(){
         }
     })
     out.sort(sortfilename );
+    if (out.length>2) out[out.length-1].frames=[];//last page has no frame
     nimage.set(0);
     images.set(out);
     fileprefix=file.name;
