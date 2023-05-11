@@ -1,9 +1,7 @@
-<pre><span class="title">Folio Crop 圖版裁框對齊</span>
-Zip 打開壓縮檔(Alt-Z)  💾 存座標檔(Alt-S) ♻️  重置圖框 (Alt-R)  ➖ 刪除圖框(Alt-D)  數字：目前圖框數
+<pre><span class="title">Folio Crop 圖版裁框對齊</span> 2023.5.12
+Zip 打開壓縮檔(Alt-Z)  💾 存座標檔(Alt-S)  ➖ 刪除圖框(Alt-D)  數字：目前圖框數
 
-高級操作：
-Alt-O 打開含圖檔文件夾
-Alt-L 讀座標檔 (先開對應之壓縮圖檔)
+進階操作： 打開文件夾 (Alt-O) 重置圖框 (Alt-R)   載入座標檔 (Alt-L)
 
 <a href="https://www.youtube.com/watch?v=UvtJITtLz1c" target="_new">操作示範影片</a>
 
@@ -19,8 +17,6 @@ Alt-L 讀座標檔 (先開對應之壓縮圖檔)
 限 Full HD 解析度(1920x1080)。
 建議一開始按F11進入全螢幕模式。
 按 Ctrl + - 調整好瀏覽器的解析度，無須經常改動。
-
-2023.5.11 （模版永樂北藏：熟練工每小時約500拍）
 </pre>
 <style>
     pre {font-size:150%}

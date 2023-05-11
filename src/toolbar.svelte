@@ -1,5 +1,5 @@
 <script>
-import {dirty,selectimage,genjson, pageframe,defaultframe, 
+import {dirty,selectimage,genjson, pageframe,defaultframe, fileprefix,
     selectedframe,resizeframe,images, frames,nimage,ratio,totalframe}from './store.js'
 import {createBrowserDownload} from 'ptk/platform/chromefs.ts'
 const {ZipReader,BlobReader} = zip;//need https://gildas-lormeau.github.io/zip.js/demos/lib/zip.min.js 
@@ -18,7 +18,7 @@ const jsonOpts = {
   excludeAcceptAllOption: true,  multiple: false,
 };
 
-let fileprefix='noname';
+
 const sortfilename=(a,b)=>{
     if (parseInt(a)&& parseInt(b)) {
         return parseInt(a) -  parseInt(b);
@@ -35,10 +35,10 @@ async function getDir() {
     }
   }
   out.sort(sortfilename );
-  if (out.length>2) out[out.length-1].frames=[];//last page has no frame
+  if (out.length>2) out[out.length-1].frames=[];//by default last page has no frame
   nimage.set(0);
   images.set(out);
-  fileprefix=dirHandle.name;
+  fileprefix.set(dirHandle.name);
 }
 async function getZip(){
     const filehandles = await window.showOpenFilePicker(zipOpts);
@@ -53,10 +53,10 @@ async function getZip(){
         }
     })
     out.sort(sortfilename );
-    if (out.length>2) out[out.length-1].frames=[];//last page has no frame
+    if (out.length>2) out[out.length-1].frames=[];//by default last page has no frame
     nimage.set(0);
     images.set(out);
-    fileprefix=file.name;
+    fileprefix.set(file.name.replace('.zip',''));
 }
 const nextimage=()=>{
     let n=$nimage;
@@ -100,6 +100,7 @@ function handleKeydown(evt) {
 
     if (alt && key=='n' || key=='enter') {nextimage();;evt.preventDefault();}
     else if (alt && key=='p') {previmage();;evt.preventDefault();}
+    else if (alt && key=='r') {reset();;evt.preventDefault();}
     else if (alt && key=='o'&&!$dirty) {getDir();;evt.preventDefault();}
     else if (alt && key=='s'&& $dirty) {save();;evt.preventDefault();}
     else if (alt && key=='l'&& !$dirty) {load();;evt.preventDefault();}
@@ -138,7 +139,7 @@ const save=()=>{
     selectimage(0);//make sure all frame is saved
     const data=genjson();
     dirty.set(false);
-    const outfn=fileprefix.replace(/\.[a-z]+$/,'')+'.json';
+    const outfn=$fileprefix+'.json';
     createBrowserDownload(outfn,data);
 }
 const reset=()=>{
@@ -151,7 +152,7 @@ const reset=()=>{
 }
 const deleteframe=()=>{
     const frms=$frames;
-    frms.pop();
+    frms.shift();
     frames.set(frms);
     selectedframe.set(0);
 }
@@ -160,9 +161,9 @@ const deleteframe=()=>{
 <!-- <button title="Alt O, Open Folder" disabled={$dirty} on:click={getDir}>📁</button> -->
 <button title="Alt Z, Open Zip" disabled={$dirty} on:click={getZip}>Zip</button>
 <button title="Alt S, Save" disabled={!$dirty} on:click={save}>💾</button>
-<!-- <button on:click={previmage}>Prev</button> -->
+<!-- <button on:click={previmage}>Prev</button> --> 
 <!-- <button title="Alt N" on:click={nextimage}>下個</button> -->
-<button title="Alt R" on:click={reset}>♻️</button>
+<!-- <button title="Alt R" on:click={reset}>♻️</button> -->
 <button title="Alt F" on:click={deleteframe}>➖</button>
 {$totalframe}
 

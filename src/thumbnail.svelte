@@ -1,6 +1,6 @@
 <script>
 import { onMount } from "svelte";
-import {ratio,frames,selectedframe,verticalstrip} from './store.js'
+import {ratio,frames,selectedframe,verticalstrip,fileprefix} from './store.js'
 
 let canvas1,canvas2;
 
@@ -36,6 +36,7 @@ onMount(()=>updateThumbnail());
 $: updateThumbnail($frames);
 
 </script>
+{$fileprefix}
 <div class="thumbnails">
 <canvas bind:this={canvas2}></canvas><br/><canvas bind:this={canvas1}></canvas>
 </div>

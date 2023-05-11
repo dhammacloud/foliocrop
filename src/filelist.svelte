@@ -13,7 +13,7 @@ import {nimage,images,selectimage} from './store.js'
 </div>
 <style>
 .done {color:yellowgreen}
-.filelist {cursor:pointer;overflow-y: auto; height: 94vh;}
+.filelist {cursor:pointer;overflow-y: auto; height:94vh;}
 .selected {background-color: rgb(72, 72, 72);}
 
 </style>

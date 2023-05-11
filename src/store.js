@@ -9,6 +9,7 @@ export const totalframe=writable(0);
 export const dirty=writable(false);
 export const pageframe=writable(3);
 export const selectedframe=writable(0);
+export const fileprefix=writable('');
 
 
 export const verticalstrip=writable(5);
