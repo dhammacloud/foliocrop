@@ -1,6 +1,9 @@
 <pre><span class="title">Folio Crop 圖版裁切</span>
-Zip 打開壓縮檔(Alt-Z)  💾 下載座標檔(Alt-S) ♻️  重置圖框 (Alt-R)  ➖ 刪除圖框(Alt-D) 目前圖框數
-Alt-O 打開文件夾
+Zip 打開壓縮檔(Alt-Z)  💾 存座標檔(Alt-S) ♻️  重置圖框 (Alt-R)  ➖ 刪除圖框(Alt-D) 目前圖框數
+
+高級操作：
+Alt-O 打開含圖檔文件夾 
+Alt-L 讀座標檔 (必須先開對應之壓縮圖檔)
 
 <a href="https://www.youtube.com/watch?v=UvtJITtLz1c" target="_new">操作示範影片</a>
 

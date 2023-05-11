@@ -9,17 +9,13 @@ const previmage=()=>{
     if (n<0) n=0;
     selectimage(n);
 }
-const pickerOpts = {
-  types: [
-    {
-      description: "Zip",
-      accept: {
-        "zip/*": [".zip"],
-      },
-    },
-  ],
-  excludeAcceptAllOption: true,
-  multiple: false,
+const zipOpts = {
+  types: [{ description: "Zip", accept: {"zip/*": [".zip"]  }}],
+  excludeAcceptAllOption: true,  multiple: false,
+};
+const jsonOpts = {
+  types: [{ description: "json", accept: {"json/*": [".json"]  }}],
+  excludeAcceptAllOption: true,  multiple: false,
 };
 
 let fileprefix='noname';
@@ -44,7 +40,7 @@ async function getDir() {
   fileprefix=dirHandle.name;
 }
 async function getZip(){
-    const filehandles = await window.showOpenFilePicker(pickerOpts);
+    const filehandles = await window.showOpenFilePicker(zipOpts);
     const file =await filehandles[0].getFile();
     const zip= new ZipReader(new BlobReader(file));
     const entries=await zip.getEntries();
@@ -98,17 +94,40 @@ function handleKeydown(evt) {
         evt.preventDefault();
         return;
     }
-    if (evt.srcElement.nodeName=='INPUT' || evt.srcElement.nodeName=='TEXTAREA'
-    || evt.srcElement.nodeName=='BUTTON') return;
+
 
     if (alt && key=='n' || key=='enter') nextimage();
     else if (alt && key=='p') previmage();
     else if (alt && key=='o'&&!$dirty) getDir();
     else if (alt && key=='s'&& $dirty) save();
+    else if (alt && key=='l'&& !$dirty) load();
     else if (alt && key=='d') deleteframe();
-    else if (key=="arrowdown" || key=="arrowup" ||key=="arrowright" || key=="arrowleft") handleFrameMove(evt);
-}
 
+    if (evt.srcElement.nodeName=='INPUT' || evt.srcElement.nodeName=='TEXTAREA'
+    || evt.srcElement.nodeName=='BUTTON') return;
+
+    if (key=="arrowdown" || key=="arrowup" ||key=="arrowright" || key=="arrowleft") handleFrameMove(evt);
+}
+const load=async ()=>{
+    if (!$images.length) {
+        alert("need images");
+        return;
+    }
+    const filehandles = await window.showOpenFilePicker(jsonOpts);
+    const file =await filehandles[0].getFile();
+    const json=JSON.parse(await file.text());
+
+    const imgs=$images;
+    if (json.length!==imgs.length) {
+        alert("zip json missmatch");
+        return;
+    }
+    
+    for (let i=0;i<imgs.length;i++) {
+        imgs[i].frames= json[i].frames;
+    }
+    images.set(imgs);
+}
 const save=()=>{
     selectimage(0);//make sure all frame is saved
     const data=genjson();
