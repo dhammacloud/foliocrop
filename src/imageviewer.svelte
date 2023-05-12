@@ -42,8 +42,7 @@ $: width=document.getElementById('image1')?.width;
 {#if imageurl}
 <div class="croppers"><Croppers {height} {width} {r} start={1}/></div>
 <img id='image1' src={imageurl} class="image" alt="noimage"/>
-{:else}
-<Help/>
+{:else}<Help/>
 {/if}
 <style>
 .image {height:99vh}
