@@ -1,6 +1,6 @@
 <script>
 import { onMount } from "svelte";
-import {ratio,frames,selectedframe,verticalstrip,fileprefix} from './store.js'
+import {ratio,frames,selectedframe,verticalstrip} from './store.js'
 
 let canvas1,canvas2;
 
@@ -9,40 +9,44 @@ const updateThumbnail=()=>{
     let nframe=-1;
     if ($selectedframe) nframe=Math.log2($selectedframe);
     const frms=$frames;
-    if (!canvas1||!canvas2) return;
-    let ctx1 = canvas1.getContext('2d');
-    ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
 
-    let ctx2=canvas2.getContext('2d');
-    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+    let c1=canvas1,c2=canvas2;
+    if (swap) {c2=canvas1;c1=canvas2;}
 
+    if (!c1||!c2) return;
+  
+
+    let ctx1 = c1.getContext('2d');
+    let ctx2 = c2.getContext('2d');
+    ctx1.clearRect(0, 0, canvas1.width, c1.height);
+    ctx2.clearRect(0, 0, canvas2.width, c2.height);
     if (!~nframe || !img1) return;
-
     const r=$ratio;
-
     const frame=frms[nframe];
     if (!frame) return;
     const vert=$verticalstrip;
-
-    let x=frame[0] ,y=frame[1], w=frame[2]/vert, h=frame[3],w2=w*0.5, h2=h*0.5;
-    canvas1.width=w2;canvas1.height=h2;
-    ctx1.drawImage(img1,x/r, y/r, w/r, h/r, 0, 0, w2, h2); 
+    let x=frame[0] ,y=frame[1], w=frame[2]/vert, h=frame[3];
+    c1.width=w;c1.height=h;
+    ctx1.drawImage(img1,x/r, y/r, w/r, h/r, 0, 0, w, h); 
 
     x=frame[0]+w*(vert-1); //last strip
-    canvas2.width=w2;canvas2.height=h2;
-    ctx2.drawImage(img1,x/r, y/r, w/r, h/r, 0, 0, w2, h2); 
+    c2.width=w;c2.height=h;
+    ctx2.drawImage(img1,x/r, y/r, w/r, h/r, 0, 0, w, h); 
 }
 onMount(()=>updateThumbnail());
-$: updateThumbnail($frames);
-
+$: updateThumbnail($frames,swap);
+let swap=0;
+const swapthumbnail=()=>{
+    swap=1-swap;
+}
 </script>
-{$fileprefix}
+
 <div class="thumbnails">
-<canvas bind:this={canvas2}></canvas><br/><canvas bind:this={canvas1}></canvas>
+<canvas  bind:this={canvas2}  on:click={swapthumbnail}></canvas><br/><canvas bind:this={canvas1}></canvas>
 </div>
 
 
 <style>
-    .thumbnails {width:80px;align-items: center;}
-    
+    canvas {width:100%}
+    .thumbnails {align-items: center;align-content: center;height:100vh}
 </style>

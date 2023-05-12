@@ -11,11 +11,22 @@ export const pageframe=writable(3);
 export const selectedframe=writable(0);
 export const fileprefix=writable('');
 
-
 export const verticalstrip=writable(5);
 export const horizontalstrip=writable(17);
 
-export function defaultframe(idx=0){return [ 1030*(2-idx)+186,139,950,2180]};
+export let defaultframe;
+
+
+export const setTemplate=(name)=>{
+    if (name=='shandong') { //山東圖書館
+        defaultframe=function(idx){return [ 1030*(2-idx)+186,139,950,2180]};
+        pageframe.set(3);
+    } else if (name=='qindinglongcang') {//欽定龍藏
+        pageframe.set(2);
+        defaultframe=function(idx){return [ 385*(1-idx)+18,148,364,810]};
+    }
+}
+
 export const caltotalframe=()=>{
     const imgs=get(images);
     let out=0;

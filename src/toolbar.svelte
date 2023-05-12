@@ -1,6 +1,6 @@
 <script>
 import {dirty,selectimage,genjson, pageframe,defaultframe, fileprefix,
-    selectedframe,resizeframe,images, frames,nimage,ratio,totalframe}from './store.js'
+    selectedframe,resizeframe,images, frames,nimage,ratio,totalframe, setTemplate}from './store.js'
 import {createBrowserDownload} from 'ptk/platform/chromefs.ts'
 const {ZipReader,BlobReader} = zip;//need https://gildas-lormeau.github.io/zip.js/demos/lib/zip.min.js 
 const previmage=()=>{
@@ -10,7 +10,7 @@ const previmage=()=>{
     selectimage(n);
 }
 const zipOpts = {
-  types: [{ description: "Zip", accept: {"zip/*": [".zip"]  }}],
+  types: [{ description: "Images Zip/PDF", accept: {"zip/*": [".zip",".pdf"]  }}],
   excludeAcceptAllOption: true,  multiple: false,
 };
 const jsonOpts = {
@@ -26,9 +26,10 @@ const sortfilename=(a,b)=>{
         return a.name>b.name?1:-1;
     }
 }
-async function getDir() {
+async function getFolder() {
   const dirHandle = await window.showDirectoryPicker();
   const out=[];
+  setTemplate('shandong');
   for await (const entry of dirHandle.values()) {
     if (entry.kind=='file' &&(entry.name.endsWith('.png')|| entry.name.endsWith('.jpg'))) {
         out.push({entry, name:entry.name,frames: out.length?null:[] }); // set first image has no frame
@@ -40,23 +41,50 @@ async function getDir() {
   images.set(out);
   fileprefix.set(dirHandle.name);
 }
-async function getZip(){
-    const filehandles = await window.showOpenFilePicker(zipOpts);
-    const file =await filehandles[0].getFile();
+async function openZip(file){
     const zip= new ZipReader(new BlobReader(file));
     const entries=await zip.getEntries();
     const out=[];
+    
+    setTemplate('shandong'); //todo , detect image type
     entries.forEach( entry =>{    
         if (entry.filename.endsWith('.jpg')) {
-            const at=entry.filename.lastIndexOf('/');
+            let at=entry.filename.lastIndexOf('/');
+            if (at==-1) at=entry.filename.lastIndexOf('\\');
             out.push({name:entry.filename.slice(at+1), entry, zip, frames: out.length?null:[]});
         }
     })
     out.sort(sortfilename );
     if (out.length>2) out[out.length-1].frames=[];//by default last page has no frame
+    return out;
+}
+let pdf;
+async function openPDF(file){
+    setTemplate('qindinglongcang');
+    const arraybuffer =await file.arrayBuffer();
+    // const fileReader = new FileReader();  
+    // const arraybuffer=await fileReader.readAsArrayBuffer(file);
+    const typedarray = new Uint8Array(arraybuffer);
+    pdf = await pdfjsLib.getDocument(typedarray).promise;
+    const out=[];
+    for (let i=1;i<=pdf.numPages;i++) {
+        out.push({name:i , pdf, page:i, frames: out.length?null:[]});
+    }
+    if (out.length>2) out[out.length-1].frames=[];//by default last page has no frame
+    
+    return out;
+}
+async function openImageFiles(){
+    const filehandles = await window.showOpenFilePicker(zipOpts);
+    const file =await filehandles[0].getFile();
+    const filename=file.name.toLowerCase();
+    let out=[];
+    if (filename.endsWith(".zip")) out=await openZip(file);
+    else if (filename.endsWith(".pdf")) out=await openPDF(file);
+    else return;
     nimage.set(0);
     images.set(out);
-    fileprefix.set(file.name.replace('.zip',''));
+    fileprefix.set(filename.replace(/\.[a-z]+$/,''));
 }
 const nextimage=()=>{
     let n=$nimage;
@@ -100,8 +128,9 @@ function handleKeydown(evt) {
 
     if (alt && key=='n' || key=='enter') {nextimage();;evt.preventDefault();}
     else if (alt && key=='p') {previmage();;evt.preventDefault();}
+    else if (alt && key=='o') {openImageFiles();evt.preventDefault();}
+    else if (alt && key=='f'&&!$dirty) {getFolder();;evt.preventDefault();}
     else if (alt && key=='r') {reset();;evt.preventDefault();}
-    else if (alt && key=='o'&&!$dirty) {getDir();;evt.preventDefault();}
     else if (alt && key=='s'&& $dirty) {save();;evt.preventDefault();}
     else if (alt && key=='l'&& !$dirty) {load();;evt.preventDefault();}
     else if (alt && key=='d') {deleteframe();evt.preventDefault();}
@@ -121,7 +150,7 @@ const load=async ()=>{
         return;
     }
     const filehandles = await window.showOpenFilePicker(jsonOpts);
-    const file =await filehandles[0].getFile();
+    const file =await filehandles[0].openImageFiles();
     const json=JSON.parse(await file.text());
 
     const imgs=$images;
@@ -158,12 +187,12 @@ const deleteframe=()=>{
 }
 </script>
 <svelte:window on:keydown={handleKeydown}/>
-<!-- <button title="Alt O, Open Folder" disabled={$dirty} on:click={getDir}>📁</button> -->
-<button title="Alt Z, Open Zip" disabled={$dirty} on:click={getZip}>Zip</button>
+<!-- <button title="Alt O, Open Folder" disabled={$dirty} on:click={getFolder}>📁</button> -->
+<button title="Alt O, Open Image Zip/PDF" disabled={$dirty} on:click={openImageFiles}>📁</button>
 <button title="Alt S, Save" disabled={!$dirty} on:click={save}>💾</button>
 <!-- <button on:click={previmage}>Prev</button> --> 
 <!-- <button title="Alt N" on:click={nextimage}>下個</button> -->
 <!-- <button title="Alt R" on:click={reset}>♻️</button> -->
-<button title="Alt F" on:click={deleteframe}>➖</button>
+<button title="Alt F, Remove Frame" on:click={deleteframe}>➖</button>
 {$totalframe}
 

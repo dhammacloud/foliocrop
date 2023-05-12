@@ -9,6 +9,15 @@ async function getImageURL () {
     const item = $images[$nimage];
     if (item.zip) {
         imageurl = URL.createObjectURL(await item.entry.getData(new zip.BlobWriter()));
+    } else if (item.pdf) {
+        await item.pdf.getPage(item.page).then(async function(page){
+            const viewport = page.getViewport({ scale:1});
+		    const canvas = document.createElement("canvas")
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            await page.render({canvasContext: canvas.getContext('2d'),viewport}).promise; 
+            imageurl = canvas.toDataURL("image/png");
+        });
     } else {
         const imagefile=await item.entry.getFile();
         imageurl= URL.createObjectURL(imagefile);
@@ -39,4 +48,5 @@ $: width=document.getElementById('image1')?.width;
 <style>
 .image {height:99vh}
 .croppers {position:absolute}
+
 </style>
