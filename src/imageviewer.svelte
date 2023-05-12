@@ -1,5 +1,5 @@
 <script>
-import {images,nimage,frames,ratio,defaultframe,resizeframe} from './store.js'
+import {images,nimage,frames,ratio,defaultframe,resizeframe,fileprefix} from './store.js'
 import Croppers from './croppers.svelte';
 import Help from './help.svelte'
 
@@ -40,6 +40,7 @@ $: width=document.getElementById('image1')?.width;
 //x={186*r+ (1000*r) } y={139*r} h={2123*r} w={990*r}
 </script>
 {#if imageurl}
+<span class="fileprefix">{$fileprefix}</span>
 <div class="croppers"><Croppers {height} {width} {r} start={1}/></div>
 <img id='image1' src={imageurl} class="image" alt="noimage"/>
 {:else}<Help/>
@@ -47,5 +48,6 @@ $: width=document.getElementById('image1')?.width;
 <style>
 .image {height:99vh}
 .croppers {position:absolute}
+.fileprefix{color:goldenrod;font-size:125%;position:absolute;right:0px;background:black;padding-left:0.5em;padding-right:0.5em}
 
 </style>

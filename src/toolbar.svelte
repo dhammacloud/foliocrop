@@ -74,10 +74,11 @@ async function openPDF(file){
     
     return out;
 }
+let filename='';
 async function openImageFiles(){
     const filehandles = await window.showOpenFilePicker(zipOpts);
     const file =await filehandles[0].getFile();
-    const filename=file.name.toLowerCase();
+    filename=file.name.toLowerCase();
     let out=[];
     if (filename.endsWith(".zip")) out=await openZip(file);
     else if (filename.endsWith(".pdf")) out=await openPDF(file);
@@ -193,6 +194,5 @@ const deleteframe=()=>{
 <!-- <button on:click={previmage}>Prev</button> --> 
 <!-- <button title="Alt N" on:click={nextimage}>下個</button> -->
 <!-- <button title="Alt R" on:click={reset}>♻️</button> -->
-<button title="Alt F, Remove Frame" on:click={deleteframe}>➖</button>
-{$totalframe}
+<button title="Alt F, Remove Frame" on:click={deleteframe}>➖</button>{$totalframe}
 
