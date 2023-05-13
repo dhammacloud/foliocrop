@@ -151,7 +151,7 @@ const load=async ()=>{
         return;
     }
     const filehandles = await window.showOpenFilePicker(jsonOpts);
-    const file =await filehandles[0].openImageFiles();
+    const file =await filehandles[0].getFile();
     const json=JSON.parse(await file.text());
 
     const imgs=$images;
