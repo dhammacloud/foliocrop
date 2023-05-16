@@ -191,8 +191,9 @@ const deleteframe=()=>{
 <!-- <button title="Alt O, Open Folder" disabled={$dirty} on:click={getFolder}>📁</button> -->
 <button title="Alt O, Open Image Zip/PDF" disabled={$dirty} on:click={openImageFiles}>📁</button>
 <button title="Alt S, Save" disabled={!$dirty} on:click={save}>💾</button>
+<button title="Alt F, Remove Frame" on:click={deleteframe}>➖</button>
+<button title="Alt R, Reset Frame" on:click={reset}>♻️</button>
 <!-- <button on:click={previmage}>Prev</button> --> 
 <!-- <button title="Alt N" on:click={nextimage}>下個</button> -->
-<!-- <button title="Alt R" on:click={reset}>♻️</button> -->
-<button title="Alt F, Remove Frame" on:click={deleteframe}>➖</button>{$totalframe}
-
+<button title="Alt L, Load Frame Setting" on:click={load}  disabled={$dirty} >📐</button>
+{$totalframe}
