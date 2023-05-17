@@ -1,4 +1,4 @@
-import {fileprefix,nimage,setTemplate,images,genjson} from './store.js'
+import {dirty,fileprefix,nimage,setTemplate,images,genjson,selectimage} from './store.js'
 const {ZipReader,BlobReader} = zip;//need https://gildas-lormeau.github.io/zip.js/demos/lib/zip.min.js 
 import {createBrowserDownload} from 'ptk/platform/chromefs.ts'
 import {get} from 'svelte/store'
@@ -110,6 +110,6 @@ export const save=()=>{
     selectimage(0);//make sure all frame is saved
     const data=genjson();
     dirty.set(false);
-    const outfn=$fileprefix+'.json';
+    const outfn=get(fileprefix)+'.json';
     createBrowserDownload(outfn,data);
 }
