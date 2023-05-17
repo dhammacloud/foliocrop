@@ -16,14 +16,13 @@
 按 Ctrl + - 調整好瀏覽器的解析度，無須經常改動。
 調整視窗大小及解析度，框可能會對不準，此時不必調整，只要點其他拍，再點回來即正常。
 
-存檔在瀏覽器的「下載」(CTRL+J)，同一卷存檔超過一次，瀏覽器會依序產生 xxx(1).json , xxx(2).json 。
-只須上傳最新的存檔，存檔的檔名必須和zip/pdf一致，即0001-001天01.zip 的存檔為 0001-001天01.json
-例如同一卷按了4次存檔，須將 0001-001天01(3).json 更名為 0001-001天01.json 並上傳。
-
-建議將數個工作檔案複製到「文件」，開啟就不必每次選文件夾。
+存檔在瀏覽器的「下載」(CTRL+J)，同一卷存檔超過一次，瀏覽器會依序產生<span class="filename"> xxx(1).json , xxx(2).json </span>。
+只須上傳最新的存檔，存檔的檔名必須和zip/pdf一致，即<span class="filename">0001-001天01.zip</span>的座標檔名為<span class="filename">0001-001天01.json</span>
+例如同一卷按了4次存檔，須將<span class="filename">0001-001天01(3).json</span>更名為<span class="filename">0001-001天01.json</span>再上傳。
 </pre>
 <style>
     pre {font-size:150%;margin:0px}
     .title {font-size:200%}
     a{color:darkcyan}
+    .filename {color:darkcyan}
 </style>
