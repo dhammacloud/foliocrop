@@ -1,6 +1,7 @@
-<pre><span class="title">Folio Crop 圖框裁切對齊</span> 2023.5.16 <a href="https://www.youtube.com/watch?v=UvtJITtLz1c" target="_new">操作示範影片</a>
-📁開啟Zip或PDF(Alt-O)  💾儲存座標檔(Alt-S)  ➖刪除圖框(Alt-D)  數字：目前圖框數
-♻️重置圖框(Alt-R)      📐載入座標檔(Alt-L)   下一拍(Alt-N, Enter)   上一拍(Alt-P)
+<pre><span class="title">Folio Crop 圖框裁切對齊</span> 2023.5.17 <a href="https://www.youtube.com/watch?v=UvtJITtLz1c" target="_new">操作示範影片</a>
+💾儲存座標檔(Alt-S)  ➖刪除圖框(Alt-D)  數字：目前圖框數
+♻️重置圖框(Alt-R)    📐載入座標檔(Alt-L)   下一拍(Alt-N, Enter)   上一拍(Alt-P)
+施放或點擊以開啟檔案，保留檔案總管視窗，節省對話盒選檔時間。→
 點 縮圖 上下對調。
 
 點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。

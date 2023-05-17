@@ -2,6 +2,14 @@
 import {images,nimage,frames,ratio,defaultframe,resizeframe,fileprefix} from './store.js'
 import Croppers from './croppers.svelte';
 import Help from './help.svelte'
+import DropFile from './3rd/dropfile.svelte'
+import { openWorkingFile } from './working.js';
+const onDrop=e=>{
+    const file=e[0]
+    if (file && (file.name.endsWith('.zip') || file.name.endsWith('.pdf') )) {
+        openWorkingFile(file);
+    }
+}
 
 let imageurl='',r=1, height=100,width=100;
 async function getImageURL () {
@@ -39,6 +47,7 @@ $: width=document.getElementById('image1')?.width;
 
 //x={186*r+ (1000*r) } y={139*r} h={2123*r} w={990*r}
 </script>
+<span class="dropzone"><DropFile onDrop={onDrop} /></span>
 {#if imageurl}
 <span class="fileprefix">{$fileprefix}</span>
 <div class="croppers"><Croppers {height} {width} {r} start={1}/></div>
@@ -49,5 +58,5 @@ $: width=document.getElementById('image1')?.width;
 .image {height:99vh}
 .croppers {position:absolute}
 .fileprefix{color:goldenrod;font-size:125%;position:absolute;right:0px;background:black;padding-left:0.5em;padding-right:0.5em}
-
+.dropzone {position:absolute;width:120px;right:0px;height:70%}
 </style>
