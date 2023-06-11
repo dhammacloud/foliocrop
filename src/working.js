@@ -1,6 +1,6 @@
-import {dirty,fileprefix,nimage,setTemplate,images,genjson,selectimage} from './store.js'
+import {dirty,fileprefix,nimage,setTemplate,images,genjson,selectimage,framefile} from './store.js'
 const {ZipReader,BlobReader} = zip;//need https://gildas-lormeau.github.io/zip.js/demos/lib/zip.min.js 
-import {createBrowserDownload} from 'ptk/platform/chromefs.ts'
+import {createBrowserDownload,verifyPermission} from 'ptk/platform/chromefs.ts'
 import {get} from 'svelte/store'
 const zipOpts = {
     types: [{ description: "Images Zip/PDF", accept: {"zip/*": [".zip",".pdf"]  }}],
@@ -37,7 +37,7 @@ async function openZip(file){
     const zip= new ZipReader(new BlobReader(file));
     const entries=await zip.getEntries();
     const out=[];
-    
+    framefile.set(null);
     setTemplate('shandong'); //todo , detect image type
     entries.forEach( entry =>{    
         if (entry.filename.endsWith('.jpg')) {
@@ -94,6 +94,7 @@ export const load=async ()=>{
     const filehandles = await window.showOpenFilePicker(jsonOpts);
     const file =await filehandles[0].getFile();
     const json=JSON.parse(await file.text());
+    framefile.set(filehandles[0]);
 
     if (json.length!==imgs.length) {
         alert("zip json missmatch");
@@ -106,10 +107,22 @@ export const load=async ()=>{
     images.set(imgs);
 }
 
-export const save=()=>{
+export const save=async ()=>{
     selectimage(0);//make sure all frame is saved
     const data=genjson();
-    dirty.set(false);
-    const outfn=get(fileprefix)+'.json';
-    createBrowserDownload(outfn,data);
+    const file=get(framefile);
+    if (file) {
+        const ok=await verifyPermission(file, true);
+        if (ok) {
+            const writable = await file.createWritable();
+            await writable.write(data);
+            await writable.close();
+            dirty.set(false);
+        }
+    } else {
+        dirty.set(false);
+        const outfn=get(fileprefix)+'.json';
+        createBrowserDownload(outfn,data);
+    }
+    
 }
