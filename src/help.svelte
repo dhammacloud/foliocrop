@@ -1,4 +1,4 @@
-<pre><span class="title">Folio Crop 圖框裁切對齊</span> 2023.5.17 <a href="https://www.youtube.com/watch?v=UvtJITtLz1c" target="_new">操作示範影片</a>
+<pre><span class="title">FolioCrop圖框裁切</span> 2023.6.8 <a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
 💾儲存座標檔(Alt-S)  ➖刪除圖框(Alt-D)  數字：目前圖框數
 ♻️重置圖框(Alt-R)    📐載入座標檔(Alt-L)   下一拍(Alt-N, Enter)   上一拍(Alt-P)
 施放或點擊以開啟檔案，保留檔案總管視窗，節省對話盒選檔時間。→
@@ -7,9 +7,9 @@
 點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。
 上下左右鍵移動圖框（選取中或全部），同時按Alt微調，按Ctrl速調。
 按圖框左邊水平方向移動，按頂邊垂真方向移動。
-右邊和底邊調整圖框大小（非必要勿調整大小）。
 讓圖框第一行和最後一行文字都在縮圖內，並盡量居中對齊。
-即使框內少於五行文字，也不要改變圖框大小，卷末校注可以大致對齊即可（字體較小故）。
+右邊和底邊調整圖框大小，盡量讓每個字在小格子內。
+即使框內少於五行文字，也不要改變圖框大小，卷末校注和夾注可以大致對齊即可（字體較小故）。
 沒有內文或注釋的圖拍，如封面裡，須刪掉圖框。一卷內第一拍和最後一拍預設無圖框。
 
 建議一開始按F11進入全螢幕模式。
