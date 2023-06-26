@@ -1,15 +1,16 @@
-<pre><span class="title">FolioCrop圖框裁切</span> 2023.6.11 <a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
+<pre><span class="title">FolioCrop圖框裁切</span> 2023.6.26<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
 💾儲存座標檔(Alt-S)  ➖刪除圖框(Alt-D)  數字：目前圖框數
 ♻️重置圖框(Alt-R)    📐載入座標檔(Alt-L)   下一拍(Alt-N, Enter)   上一拍(Alt-P)
 拖放或點擊以開啟檔案，用拖放可以最好保留檔案總管視窗，節省每次點擊開始對話盒選檔時間。
 點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。
-上下左右鍵移動圖框（選取中或全部），同時按Alt微調，按Ctrl速調。
+上下左右鍵移動圖框（選取中或全部），按Ctrl調整大小，同時按Alt微調。
 按圖框左邊水平方向移動，按頂邊垂直方向移動。
 讓圖框第一行和最後一行文字都在縮圖內，並盡量居中對齊。
 點 圖拍清單右邊的「兩行縮圖」可上下對調顯示。
 右邊和底邊調整圖框大小，讓每個字在小格子內，盡量讓水平線在字與字之間。
 即使框內少於五行文字，也要對齊，卷末校注和夾注可以大致對齊即可（字體較小故）。
 沒有內文或注釋的圖拍，如封面裡，須刪掉圖框。一卷內第一拍和最後一拍預設無圖框。
+按 1, 2 ,3 選框。0全選。
 一開始按F11進入全螢幕模式。按 Ctrl + - 調整好瀏覽器的解析度，無須經常改動。
 調整瀏覽視窗大小及改變縮放比例，框的位置可能會跑掉，此時不必調整，只要點其他拍，再點回來即正常。
 存檔在瀏覽器的「下載」(CTRL+J)，同一卷存檔超過一次，瀏覽器會依序產生<span class="filename"> xxx(1).json , xxx(2).json </span>。

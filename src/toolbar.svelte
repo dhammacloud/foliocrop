@@ -21,22 +21,31 @@ function handleFrameMove (evt) {
     const key=evt.key.toLowerCase();
     const alt=evt.altKey;
     const ctrl=evt.ctrlKey;
-    let dy=0,dx=0;
+
+    let dy=0,dx=0,xinc=0,yinc=0;
     if (key=='arrowup') dy=-1;
     if (key=='arrowdown') dy=1;
     if (key=='arrowleft') dx=-1;
     if (key=='arrowright') dx=1;
 
+
     if (alt) {dx*=1;dy*=1;}
-    else if (ctrl) {dx*=5;dy*=5;}
-    else {dx*=2.5;dy*=2.5;}
+    else {//default
+        dx*=2;dy*=2;
+    }
+    if (ctrl) {
+        xinc+=dx;
+        yinc+=dy
+        dx=0,dy=0;
+        //dx*=5;dy*=5;
+    }
     const frms=$frames;
     const sel=$selectedframe;
     for (let i=0;i<frms.length;i++) {
         let [x,y,w,h]=frms[i];
         x+=dx; y+=dy;
         if ( (1<<i)&sel || !sel) { //move all frame if no selected
-            frms[i]=[x,y,w,h];
+            frms[i]=[x,y,w+xinc,h+yinc];
         }
     }
     frames.set(frms);
@@ -47,8 +56,12 @@ function handleKeydown(evt) {
     if (key=='f5') {//prevent refresh accidently
         evt.preventDefault();
         return;
+    } else if (key=='0'||key=='1'||key=='2'||key=='3') {
+        let f=parseInt(key);
+        if (f==3) f=4;
+        selectedframe.set(f);       
     }
-    if (alt && key=='n' || key=='enter') {nextimage();;evt.preventDefault();}
+    else if (alt && key=='n' || key=='enter') {nextimage();;evt.preventDefault();}
     else if (alt && key=='p') {previmage();;evt.preventDefault();}
     else if (alt && key=='o') {openImageFiles();evt.preventDefault();}
     else if (alt && key=='f'&&!$dirty) {getFolder();;evt.preventDefault();}
