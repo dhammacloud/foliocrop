@@ -85,6 +85,14 @@ export const openImageFiles=async()=>{
     const file =await filehandles[0].getFile();
     filename=openWorkingFile(file);
 }
+export const loadfile=async (file)=>{
+    const imgs=get(images);
+    const json=JSON.parse(await file.text());
+       for (let i=0;i<imgs.length;i++) {
+        imgs[i].frames= json[i].frames;
+    }
+    images.set(imgs);
+}
 export const load=async ()=>{
     const imgs=get(images);
     if (!imgs.length) {
@@ -93,18 +101,14 @@ export const load=async ()=>{
     }
     const filehandles = await window.showOpenFilePicker({...jsonOpts});
     const file =await filehandles[0].getFile();
-    const json=JSON.parse(await file.text());
     framefile.set(filehandles[0]);
 
     if (json.length!==imgs.length || filehandles[0].name.replace('.json','')!==get(fileprefix)) {
         alert("zip json filename mismatch");
         return;
     }
-    
-    for (let i=0;i<imgs.length;i++) {
-        imgs[i].frames= json[i].frames;
-    }
-    images.set(imgs);
+
+    loadfile(file);
 }
 
 export const save=async ()=>{
@@ -124,5 +128,4 @@ export const save=async ()=>{
         const outfn=get(fileprefix)+'.json';
         createBrowserDownload(outfn,data);
     }
-    
 }

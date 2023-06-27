@@ -1,7 +1,8 @@
-<pre><span class="title">FolioCrop圖框裁切</span> 2023.6.26<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
+<pre><span class="title">FolioCrop圖框裁切</span> 2023.6.28<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
 💾儲存座標檔(Alt-S)  ➖刪除圖框(Alt-D)  數字：目前圖框數
 ♻️重置圖框(Alt-R)    📐載入座標檔(Alt-L)   下一拍(Alt-N, Enter)   上一拍(Alt-P)
-拖放或點擊以開啟檔案，用拖放可以最好保留檔案總管視窗，節省每次點擊開始對話盒選檔時間。
+拖放(可同時拖圖檔及對應的座標檔）或點擊以開啟檔案，
+用拖放可以最好保留檔案總管視窗，節省每次點擊開始對話盒選檔時間。
 點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。
 上下左右鍵移動圖框（選取中或全部），按Ctrl調整大小，同時按Alt微調。
 按圖框左邊水平方向移動，按頂邊垂直方向移動。
@@ -17,6 +18,7 @@
 只須上傳最新的存檔，存檔的檔名必須和zip/pdf一致，即<span class="filename">0001-001天01.zip</span>的座標檔名為<span class="filename">0001-001天01.json</span>
 例如同一卷按了4次存檔，須將<span class="filename">0001-001天01(3).json</span>更名為<span class="filename">0001-001天01.json</span>再上傳。
 如果載入座標檔（載入圖檔後要立刻載入座標檔），存檔後就不是放在瀏覽器「下載」檔案夾，而是覆蓋載入的檔案。
+如果用施放的方式同時載入圖檔及座標檔，則按儲存一樣會放在「下載」文件夾，不會破壞原來的檔案。
 第一次按存檔會要求寫入的權限，
 </pre>
 <!--  2023.6.11 後 工資從每500拍200 改為 每300拍200 //-->
