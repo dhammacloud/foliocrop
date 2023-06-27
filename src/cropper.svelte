@@ -17,7 +17,8 @@ export let selected=false;
 </script>
 <g>
 <text {x} y={y-5} class:selected class="caption">{caption}</text>
-<text x={x+30} y={y-5} class="pointerpos"> {Math.floor(x/r)},{Math.floor(y/r)}:{Math.floor(w/r)},{ Math.floor(h/r) }</text>
+<text x={x+20} y={y-5} class:selected class="ratio">{(h/w).toFixed(2)}</text>
+<text x={x+80} y={y-5} class="pointerpos"> {Math.floor(x/r)},{Math.floor(y/r)}:{Math.floor(w/r)},{ Math.floor(h/r) }</text>
 
 {#each (new Array(verticalstrip)) as strip,idx}
 <rect x={x+idx*(w/verticalstrip)} {y} width={(w/verticalstrip) } height={h} class={"vstrip"+((frameidx*verticalstrip+idx)%2)} ></rect>
@@ -51,8 +52,13 @@ export let selected=false;
 	stroke: gray;
 	stroke-width: 1;
 }
+.ratio {
+	font: bold 14px courier;
+	fill: brown;
+	stroke:brown;
+}
 .pointerpos {
-	font: bold 16px courier;
+	font: bold 12px courier;
 	fill: brown;
 	stroke:brown;
 }

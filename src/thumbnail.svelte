@@ -34,7 +34,7 @@ const updateThumbnail=()=>{
     ctx2.drawImage(img1,x/r, y/r, w/r, h/r, 0, 0, w, h); 
 }
 onMount(()=>updateThumbnail());
-$: updateThumbnail($frames,swap);
+$: updateThumbnail($frames,$selectedframe,swap);
 let swap=0;
 const swapthumbnail=()=>{
     swap=1-swap;

@@ -18,7 +18,7 @@ export let defaultframe;
 
 export const setTemplate=(name)=>{
     if (name=='shandong') { //山東圖書館
-        defaultframe=function(idx){return [ 1030*(2-idx)+186,139,950,2120]};
+        defaultframe=function(idx){return [ 1030*(2-idx)+186,139,964,2120]};
         pageframe.set(3);
     } else if (name=='qindinglongcang') {//欽定龍藏
         pageframe.set(2);
@@ -51,6 +51,7 @@ export const selectimage=(n)=>{
     }
     totalframe.set( caltotalframe())
     nimage.set(n);
+    if (get(totalframe)) selectedframe.set(1);
 }
 export const genjson=()=>{
     const imgs=get(images);

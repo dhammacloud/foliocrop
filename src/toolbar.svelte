@@ -28,7 +28,6 @@ function handleFrameMove (evt) {
     if (key=='arrowleft') dx=-1;
     if (key=='arrowright') dx=1;
 
-
     if (alt) {dx*=1;dy*=1;}
     else {//default
         dx*=2;dy*=2;
@@ -59,9 +58,10 @@ function handleKeydown(evt) {
     } else if (key=='0'||key=='1'||key=='2'||key=='3') {
         let f=parseInt(key);
         if (f==3) f=4;
-        selectedframe.set(f);       
+        selectedframe.set(f);   
+        evt.preventDefault();    
     }
-    else if (alt && key=='n' || key=='enter') {nextimage();;evt.preventDefault();}
+    else if (alt && key=='n' || key=='enter') {nextimage();evt.preventDefault();}
     else if (alt && key=='p') {previmage();;evt.preventDefault();}
     else if (alt && key=='o') {openImageFiles();evt.preventDefault();}
     else if (alt && key=='f'&&!$dirty) {getFolder();;evt.preventDefault();}
