@@ -1,5 +1,5 @@
 <script>
-import {dirty,selectimage,pageframe,defaultframe, 
+import {dirty,selectimage,pageframe,defaultframe, verticalstrip,setTemplate,
     selectedframe,resizeframe,images, frames,nimage,ratio,totalframe}from './store.js'
 import {openImageFiles,getFolder,load,save} from './working.js'
 
@@ -93,6 +93,14 @@ const deleteframe=()=>{
     frames.set(frms);
     selectedframe.set(0);
 }
+const toggleNanzang=()=>{
+    if ($verticalstrip==6) {
+        setTemplate('beizang')    ;
+    } else {
+        setTemplate('nanzang')
+    }
+    
+}
 </script>
 <svelte:window on:keydown={handleKeydown}/>
 <!-- <button title="Alt O, Open Folder" disabled={$dirty} on:click={getFolder}>📁</button> -->
@@ -103,4 +111,5 @@ const deleteframe=()=>{
 <!-- <button on:click={previmage}>Prev</button> --> 
 <!-- <button title="Alt N" on:click={nextimage}>下個</button> -->
 <button title="Alt L, Load Frame Setting" on:click={load}  disabled={$dirty} >📐</button>
+<button title="永樂南北藏切換" on:click={toggleNanzang}>{$verticalstrip==6?'南':'北'}</button>
 {$totalframe}

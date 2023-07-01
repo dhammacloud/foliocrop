@@ -13,16 +13,23 @@ export const fileprefix=writable('');
 export const framefile=writable(null);//editing framefile
 export const verticalstrip=writable(5);
 export const horizontalstrip=writable(17);
+export const nanzang=writable(true);
 
 export let defaultframe;
 
 export const setTemplate=(name)=>{
-    if (name=='shandong') { //山東圖書館
+    if (name=='beizang') { //山東圖書館 北藏
         defaultframe=function(idx){return [ 1030*(2-idx)+186,139,964,2120]};
         pageframe.set(3);
-    } else if (name=='qindinglongcang') {//欽定龍藏
+        verticalstrip.set(5);
+    } else if (name=='longzang') {//欽定龍藏
+        verticalstrip.set(5);
         pageframe.set(2);
         defaultframe=function(idx){return [ 385*(1-idx)+18,148,364,810]};
+    } else if (name=='nanzang') {//山東圖書館南藏
+        verticalstrip.set(6);
+        pageframe.set(3);
+        defaultframe=function(idx){return [ 880*(2-idx)+220,170,790,1822]};
     }
 }
 
@@ -51,7 +58,7 @@ export const selectimage=(n)=>{
     }
     totalframe.set( caltotalframe())
     nimage.set(n);
-    if (get(totalframe)) selectedframe.set(1);
+    if (get(totalframe)) selectedframe.set(0);
 }
 export const genjson=()=>{
     const imgs=get(images);

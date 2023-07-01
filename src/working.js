@@ -92,6 +92,7 @@ export const loadfile=async (file)=>{
         imgs[i].frames= json[i].frames;
     }
     images.set(imgs);
+    return json;
 }
 export const load=async ()=>{
     const imgs=get(images);
@@ -103,12 +104,12 @@ export const load=async ()=>{
     const file =await filehandles[0].getFile();
     framefile.set(filehandles[0]);
 
-    if (json.length!==imgs.length || filehandles[0].name.replace('.json','')!==get(fileprefix)) {
+    const json=await loadfile(file);
+    if (json.length!==imgs.length || (filehandles.length>1&& filehandles[0].name.replace('.json','')!==get(fileprefix))) {
+        json.length=0;
         alert("zip json filename mismatch");
         return;
-    }
-
-    loadfile(file);
+    }   
 }
 
 export const save=async ()=>{
