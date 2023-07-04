@@ -12,8 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "esbuild": "^0.17.18",
-    "esbuild-svelte": "^0.7.3",
-    "sharp": "^0.32.1",
-    "svelte": "^3.59.0"
+    "esbuild-svelte": "^0.7.4",
+    "svelte": "^3.59.2"
   }
 }

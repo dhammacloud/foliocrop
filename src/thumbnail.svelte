@@ -14,7 +14,6 @@ const updateThumbnail=()=>{
     if (swap) {c2=canvas1;c1=canvas2;}
 
     if (!c1||!c2) return;
-  
 
     let ctx1 = c1.getContext('2d');
     let ctx2 = c2.getContext('2d');

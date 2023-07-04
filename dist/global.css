@@ -14,3 +14,13 @@ body {
    font-size: 100%;
    margin: 5px 5px 5px 0px;
 }
+
+.popup{
+   position:absolute;
+   top:0em;
+   left:40vh;
+   width:50vw;
+   color:black;
+   background-color:  rgb(243, 208, 160);;
+   z-index: 99;
+}

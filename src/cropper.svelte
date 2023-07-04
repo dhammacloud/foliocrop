@@ -40,16 +40,21 @@ export let selected=false;
 
 <style>
 .vstrip1 {
-	fill: rgba(189, 189, 189, 0.3)
+	stroke: rgba(255, 123, 62, 0.8);
+	fill:rgba(255,255,255,0)
+		/*stroke: rgba(189, 189, 189, 1);*/
 }
 .vstrip0 {
-	fill: rgba(255, 136, 62, 0.3)
+	stroke: rgba(255, 123, 62, 0.8);
+	fill:rgba(255,255,255,0)
 }
-.step{
-	fill:rgba(128,128,128,0.3);
+
+.step {
+	cursor:move;
+	fill:rgba(128,128,128,0);
 }
 .hstrip {
-	stroke: gray;
+	stroke: rgb(255, 123, 0.8);
 	stroke-width: 1;
 }
 .ratio {
@@ -72,21 +77,18 @@ export let selected=false;
 	fill:rgba(227, 0, 0, 0.865);
 	stroke:rgba(227, 0, 0, 0.865);
 }
-.step {
-	cursor:move;
-	fill:rgba(128,128,128,0.5);
-}
+
 .grip {
 	cursor: grabbing;
-	fill:#fff0;
+	fill:rgba(128,96,96,0.5);
 }
 .gripx {
 	cursor: col-resize;
-	fill: #fff0;
+	fill:rgba(128,96,96,0.5);
 }
 .gripy {
 	cursor: row-resize;
-	fill: #fff0;
+	fill:rgba(128,96,96,0.5);
 }
 .grip.active, .grip:hover {
 	fill: #2288;

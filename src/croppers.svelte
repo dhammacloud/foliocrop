@@ -2,8 +2,8 @@
 import Cropper from './cropper.svelte';
 import {selectedframe,frames,verticalstrip,horizontalstrip} from './store.js'
 
-export let height = 400 
-export let width =  400
+export let height = 2000 
+export let width =  2000
 
 export let start='';
 

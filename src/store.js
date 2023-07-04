@@ -14,7 +14,9 @@ export const framefile=writable(null);//editing framefile
 export const verticalstrip=writable(5);
 export const horizontalstrip=writable(17);
 export const nanzang=writable(true);
-
+export const showpreview=writable(false);
+export const activeimageurl=writable('')
+export const swiper=writable(null)
 export let defaultframe;
 
 export const setTemplate=(name)=>{
@@ -32,7 +34,7 @@ export const setTemplate=(name)=>{
         defaultframe=function(idx){return [ 880*(2-idx)+220,170,790,1822]};
     }
 }
-
+setTemplate('beizang');
 export const caltotalframe=()=>{
     const imgs=get(images);
     let out=0;
@@ -72,4 +74,38 @@ export const genjson=()=>{
         out.push(  '{"name":"'+imgs[i].name+'","frames":'+JSON.stringify(frames)+"}" );
     }
     return '['+out.join(',\n')+']';
+}
+
+export async function getImageURL (images,nimg, store) {
+    if (!images?.length) return;
+    const item = images[nimg]; //nimg cannot be zero
+    if (!item) return;
+    if (item.zip) {
+        imageurl = URL.createObjectURL(await item.entry.getData(new zip.BlobWriter()));
+    } else if (item.pdf) {
+        await item.pdf.getPage(item.page).then(async function(page){
+            const viewport = page.getViewport({ scale:1});
+		    const canvas = document.createElement("canvas")
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            await page.render({canvasContext: canvas.getContext('2d'),viewport}).promise; 
+            imageurl = canvas.toDataURL("image/png");
+        });
+    } else {
+        const imagefile=await item.entry.getFile();
+        imageurl= URL.createObjectURL(imagefile);
+    }
+    if (store) {
+        store.set(imageurl);
+        setTimeout(()=>{
+            const naturalWidth = document.getElementById('image1').naturalWidth;
+            height = document.getElementById('image1').height;
+            width = document.getElementById('image1').width;
+            r=width/naturalWidth;      
+            ratio.set(r);
+            const frms=(images[nimg].frames||[defaultframe(0),defaultframe(1), defaultframe(2)]).map(f=>resizeframe(f,r));
+            frames.set( frms );
+        },100);
+    }
+    return imageurl; 
 }

@@ -1,6 +1,6 @@
-<pre><span class="title">FolioCrop圖框裁切</span> 2023.7.1<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
-💾儲存座標檔(Alt-S)  ➖刪除圖框(Alt-D)  數字：目前圖框數
-♻️重置圖框(Alt-R)    📐載入座標檔(Alt-L)   下一拍(Alt-N, Enter)   上一拍(Alt-P)
+<pre><span class="title">FolioCrop圖框裁切</span> 2023.7.4<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
+💾儲存座標檔(Alt-S) ➖刪除圖框(Alt-D) 👁預覽
+♻️重置圖框(Alt-R) 📐載入座標檔(Alt-L) 下拍(Alt-N, Enter)  上拍(Alt-P)
 拖放(可同時拖圖檔及對應的座標檔）或點擊以開啟檔案，
 用拖放可以最好保留檔案總管視窗，節省每次點擊開始對話盒選檔時間。
 點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。
