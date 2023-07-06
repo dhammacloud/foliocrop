@@ -18,6 +18,6 @@ import Preview from './preview.svelte';
 
 <style>
     .ImageViewer {width:80%;vertical-align: top;}
-    .FileList {width:17% ;vertical-align: top;}
-    .Thumbnail { vertical-align: top}
+    .FileList {width:15%;vertical-align: top;}
+    .Thumbnail { width:5%; vertical-align: top}
 </style>

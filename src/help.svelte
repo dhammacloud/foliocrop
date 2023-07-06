@@ -1,4 +1,4 @@
-<pre><span class="title">FolioCrop圖框裁切</span> 2023.7.4<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
+<pre><span class="title">FolioCrop圖框裁切</span> 2023.7.6<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
 💾儲存座標檔(Alt-S) ➖刪除圖框(Alt-D) 👁預覽
 ♻️重置圖框(Alt-R) 📐載入座標檔(Alt-L) 下拍(Alt-N, Enter)  上拍(Alt-P)
 拖放(可同時拖圖檔及對應的座標檔）或點擊以開啟檔案，

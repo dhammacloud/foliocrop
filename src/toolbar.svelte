@@ -1,9 +1,12 @@
 <script>
 import { get } from 'svelte/store';
 import {dirty,selectimage,pageframe,defaultframe, verticalstrip,setTemplate,swiper,
-    selectedframe,resizeframe,images, frames,nimage,ratio,totalframe,showpreview}from './store.js'
+    selectedframe,resizeframe,images, frames,nimage,ratio,totalframe,showpreview,rotateangle, activeimageurl}from './store.js'
 import {openImageFiles,getFolder,load,save} from './working.js'
 
+import Slider from './3rd/rangeslider.svelte';
+
+let value=[ get(rotateangle),0];
 const previmage=()=>{
     let n=$nimage;
     n--;
@@ -123,8 +126,11 @@ const toggleNanzang=()=>{
     
 }
 const togglepreview=()=>{
+    selectimage(0); //make sure angle and frame is updated
     showpreview.set(!$showpreview);
 }
+$: value[0]= $rotateangle , $activeimageurl; //when image change, update angle slider
+$: rotateangle.set( value[0] ); //user change the slider
 </script>
 <svelte:window on:keydown={handleKeydown}/>
 <!-- <button title="Alt O, Open Folder" disabled={$dirty} on:click={getFolder}>📁</button> -->
@@ -136,6 +142,7 @@ const togglepreview=()=>{
 <!-- <button title="Alt N" on:click={nextimage}>下個</button> -->
 <button title="Alt L, Load Frame Setting" on:click={load}  disabled={$dirty} >📐</button>
 <br/>
-<button title="Alt V, 預覽" on:click={togglepreview}>👁</button>
+<button title="Alt V, 預覽" on:click={togglepreview}>👁</button>{$totalframe}折
 <button title="永樂南北藏切換" on:click={toggleNanzang}>{$verticalstrip==6?'南藏':'北藏'}</button>
-{$totalframe}
+{#if value[0]}{(value[0]/60).toFixed(2)}°{/if}
+<Slider bind:value min={-240} max={240}/>

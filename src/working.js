@@ -1,4 +1,4 @@
-import {dirty,fileprefix,nimage,setTemplate,images,genjson,selectimage,framefile} from './store.js'
+import {dirty,fileprefix,nimage,setTemplate,images,genjson,selectimage,framefile,caltotalframe,totalframe} from './store.js'
 const {ZipReader,BlobReader} = zip;//need https://gildas-lormeau.github.io/zip.js/demos/lib/zip.min.js 
 import {createBrowserDownload,verifyPermission} from 'ptk/platform/chromefs.ts'
 import {get} from 'svelte/store'
@@ -88,10 +88,13 @@ export const openImageFiles=async()=>{
 export const loadfile=async (file)=>{
     const imgs=get(images);
     const json=JSON.parse(await file.text());
-       for (let i=0;i<imgs.length;i++) {
+    for (let i=0;i<imgs.length;i++) {
         imgs[i].frames= json[i].frames;
+        imgs[i].rotate=json[i].rotate||0;
     }
     images.set(imgs);
+    totalframe.set( caltotalframe())
+    
     return json;
 }
 export const load=async ()=>{

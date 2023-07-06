@@ -75,7 +75,7 @@ function expand(event) {
 </script>
 
 <svelte:window on:mouseup={stopExpand} />
-<div style="position:absolute">
+<div style="position:absolute;z-index:199">
 {#key theframes}
 <svg  bind:this={svg1} viewBox={"0 0 "+(width)+' '+height} {height} {width} 
     on:mousemove={expand} class:expanding>

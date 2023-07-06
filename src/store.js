@@ -17,6 +17,7 @@ export const nanzang=writable(true);
 export const showpreview=writable(false);
 export const activeimageurl=writable('')
 export const swiper=writable(null)
+export const rotateangle=writable(0);
 export let defaultframe;
 
 export const setTemplate=(name)=>{
@@ -56,10 +57,13 @@ export const selectimage=(n)=>{
 
     if (imgs?.length && imgs[nimg]) {
         imgs[nimg].frames=frms.map( f=>resizeframe(f,1/r) ) ;
+        imgs[nimg].rotate=get(rotateangle);
         dirty.set(true);
     }
     totalframe.set( caltotalframe())
     nimage.set(n);
+    console.log(imgs[n])
+    rotateangle.set(imgs[n]?.rotate||0);
     if (get(totalframe)) selectedframe.set(0);
 }
 export const genjson=()=>{
@@ -67,11 +71,13 @@ export const genjson=()=>{
     const out=[];
     for (let i=0;i<imgs.length;i++) {
         const frames=[];
+        const rotate=imgs[i].rotate||0;
         for (let j=0;j<imgs[i].frames?.length||0;j++) {
             const [x,y,w,h]=imgs[i].frames[j];
             frames.push([Math.round(x),Math.round(y),Math.round(w),Math.round(h)]);
         }
-        out.push(  '{"name":"'+imgs[i].name+'","frames":'+JSON.stringify(frames)+"}" );
+        out.push(  '{"name":"'+imgs[i].name+'","frames":'+JSON.stringify(frames)+
+        (rotate?',"rotate":'+rotate:'')+"}" );
     }
     return '['+out.join(',\n')+']';
 }

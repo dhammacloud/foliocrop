@@ -1,5 +1,5 @@
 <script>
-import {images,getImageURL,swiper,verticalstrip,horizontalstrip, showpreview} from './store.js'
+import {images,getImageURL,swiper,verticalstrip,horizontalstrip, showpreview, rotateangle} from './store.js'
 import {get} from 'svelte/store'
 import Swipe from './3rd/swipe.svelte';
 import SwipeItem from './3rd/swipeitem.svelte';
@@ -19,7 +19,6 @@ onDestroy(()=>{
 });
 let jobs=0,finished=0;
 let previewimages=[];
-let gridheight,gridwidth;
 
 const drawGrid=(ctx,w,h,vs,hs)=>{
     ctx.lineWidth=1;
@@ -57,19 +56,33 @@ const genpreview=async ()=>{
         const img=new Image();
         img.src=url;
         await sleep(30); //wait for image to rady
-        var canvas = document.createElement('CANVAS');
 
+        const canvas = document.createElement('CANVAS');
+        canvas.width=img.naturalWidth;
+        canvas.height=img.naturalHeight;
+        const rotate=imgs[i].rotate||0;
         let ctx = canvas.getContext('2d');
+
+        if (rotate) {
+            ctx.save();
+            ctx.translate(canvas.width/2,canvas.height/2);
+            ctx.rotate( rotate * Math.PI / (180*60) ); 
+            ctx.translate(-canvas.width/2,-canvas.height/2);
+            ctx.drawImage(img, 0 ,0,canvas.width,canvas.height);
+            ctx.restore();
+        } 
+        
         for (let i=0;i<frames.length;i++) {
-            const w=280;
+            const canvas1 = document.createElement('CANVAS');
+            const ctx1=canvas1.getContext('2d');
+            const w=250;
             const h=w*2.2;
-            canvas.width=w;
-            canvas.height=h;
-            gridheight=h;
-            gridwidth=w;
-            ctx.drawImage(img, frames[i][0],frames[i][1],frames[i][2],frames[i][3], 0,0,w,h);
-            drawGrid(ctx,w,h,vs,hs);
-            canvas.toBlob(function(b){
+            canvas1.width=w;
+            canvas1.height=h;
+
+            ctx1.drawImage(canvas, frames[i][0],frames[i][1],frames[i][2],frames[i][3], 0,0,canvas1.width,canvas1.height);
+            drawGrid(ctx1,w,h,vs,hs);
+            canvas1.toBlob(function(b){
                 previewimages.push(URL.createObjectURL(b));
                 finished++;
             });
@@ -108,17 +121,14 @@ $: genpreview();
         <SwipeItem><img alt='no' class="swipe" src={previewimages[previewimages.length-idx-1]}/></SwipeItem>
         {/each}    
     </Swipe>
-    <!-- <PreviewGrid left={gridleft} height={gridheight} width={gridwidth}/> -->
     </div>
-    <!-- <img alt='no' src={previewimages[1]}/>
-    <img alt='no' src={previewimages[2]}/> -->
     {:else}
     Creating Preview Images  {Math.round(finished*100/jobs)}%
     {/if}
 </div>
 <style>
 .swipe-holder{
-    z-index:99;
+    z-index:999;
     height: 100vh;
     /* width: 50%;  */
 }

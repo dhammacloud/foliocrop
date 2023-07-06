@@ -1,5 +1,5 @@
 <script>
-import {images,nimage,fileprefix,getImageURL,activeimageurl} from './store.js'
+import {images,nimage,fileprefix,getImageURL,activeimageurl,rotateangle,showpreview} from './store.js'
 import Croppers from './croppers.svelte';
 import Help from './help.svelte'
 import DropFile from './3rd/dropfile.svelte'
@@ -20,7 +20,6 @@ const onDrop=async files=>{
     
     for (let i=0;i<inputfiles.length;i++){
         const file=inputfiles[i];
-        console.log(file.name)
         if (file.name.endsWith('.zip') || file.name.endsWith('.pdf') ) {
             await openWorkingFile(file);
             prefix=file.name.replace(/\.[a-z]+$/,'');
@@ -34,25 +33,26 @@ const onDrop=async files=>{
     }
 }
 
-let r=1, height=100,width=100;
+let r=1, height=2000,width=3000;
 
 $: getImageURL($images,$nimage,activeimageurl);
-$: height=document.getElementById('image1')?.height , $activeimageurl;
-$: width=document.getElementById('image1')?.width , $activeimageurl;
-
+// $: height=document.getElementById('image1')?.height||height , $activeimageurl;
+// $: width=document.getElementById('image1')?.width||width , $activeimageurl;
 //x={186*r+ (1000*r) } y={139*r} h={2123*r} w={990*r}
 </script>
 <span class="dropzone"><DropFile onDrop={onDrop} /></span>
 {#if $activeimageurl}
-{#key $activeimageurl}
+{#key $activeimageurl,$rotateangle}
 <span class="fileprefix">{$fileprefix}</span>
+{#if !$showpreview}
 <div class="croppers"><Croppers {height} {width} {r} start={1}/></div>
-<img id='image1' src={$activeimageurl} class="image" alt="noimage"/>
+{/if}
+<img id='image1' src={$activeimageurl} class="image" alt="noimage" style={"transform: rotate("+($rotateangle/60)+"deg);"}/>
 {/key}
 {:else}<Help/>
 {/if}
 <style>
-.image {height:99vh}
+.image {height:99vh;z-index:1}
 .croppers {position:absolute}
 .fileprefix{color:goldenrod;font-size:125%;position:absolute;right:0px;background:black;padding-left:0.5em;padding-right:0.5em}
 .dropzone {position:absolute;width:120px;right:0px;height:70%}
