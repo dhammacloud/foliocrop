@@ -115,7 +115,7 @@ const close=()=>{
 }
 const swipeChanged=(obj)=>{
     const {active_item}=obj.detail;
-    defaultIndex
+    defaultIndex=active_item;
 }
 
 $: setswiper(_swiper)
@@ -136,8 +136,8 @@ $: genpreview();
     </div>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <span on:click={close} class="closebtn">✖️</span>
-    <div class="swipe-holder" on:wheel={mousewheel} on:change={swipeChanged}>
-    <Swipe bind:this={_swiper} {...swipeConfig} {defaultIndex}>
+    <div class="swipe-holder" on:wheel={mousewheel} >
+    <Swipe bind:this={_swiper} {...swipeConfig} {defaultIndex} on:change={swipeChanged}>
         {#each previewimages as image,idx}
         <SwipeItem><img alt='no' class="swipe" src={previewimages[previewimages.length-idx-1]}/></SwipeItem>
         {/each}    

@@ -55,5 +55,5 @@ $: getImageURL($images,$nimage,activeimageurl);
 .image {height:99vh;z-index:1}
 .croppers {position:absolute}
 .fileprefix{color:goldenrod;font-size:125%;position:absolute;right:0px;background:black;padding-left:0.5em;padding-right:0.5em}
-.dropzone {position:absolute;width:120px;right:0px;height:70%}
+.dropzone {position:absolute;width:120px;right:0px;height:70%;z-index:9999}
 </style>
