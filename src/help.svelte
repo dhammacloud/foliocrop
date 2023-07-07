@@ -1,9 +1,10 @@
-<pre><span class="title">FolioCrop圖框裁切</span> 2023.7.6<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
-💾儲存座標檔(Alt-S) ➖刪除圖框(Alt-D) 👁預覽
-♻️重置圖框(Alt-R) 📐載入座標檔(Alt-L) 下拍(Alt-N, Enter)  上拍(Alt-P)
-拖放(可同時拖圖檔及對應的座標檔）或點擊以開啟檔案，
-用拖放可以最好保留檔案總管視窗，節省每次點擊開始對話盒選檔時間。
-點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。
+<pre><span class="title">FolioCrop圖框裁切</span> 2023.7.7<a href="https://youtu.be/YxdzYUatZvI" target="_new">操作示範</a> <a href="https://drive.google.com/file/d/1b_0Qzd4mtDsOQlov0GvDQdI7uzM7UWfR/view?usp=sharing" target="_new">測試文件</a>
+💾儲存座標檔(Alt-S) ➖刪除圖框(Alt-D) ♻️重置圖框(Alt-R)  📐載入座標檔(Alt-L)
+👁預覽調整效果　已完成折數  北藏/南藏　切換  拉條改變角度。下一拍(Enter)
+一開始按F11進入全螢幕模式。按 Ctrl + - 調整好瀏覽器的解析度，無須經常改動。
+拖放或點擊以開啟圖檔，點一下圖檔名左邊的○可標注有問題的頁面。
+保留檔案總管在工作目錄，節省每次點擊開始對話盒選檔時間。
+點任何一個圖框，序號變紅色時，表示選取，再點一下取消選取。按 1, 2 ,3 選框。0全選。
 上下左右鍵移動圖框（選取中或全部），按Ctrl調整大小，同時按Alt微調。
 按圖框左邊水平方向移動，按頂邊垂直方向移動。
 讓圖框第一行和最後一行文字都在縮圖內，並盡量居中對齊。
@@ -11,20 +12,21 @@
 右邊和底邊調整圖框大小，讓每個字在小格子內，盡量讓水平線在字與字之間。
 即使框內少於五行文字，也要對齊，卷末校注和夾注可以大致對齊即可（字體較小故）。
 沒有內文或注釋的圖拍，如封面裡，須刪掉圖框。一卷內第一拍和最後一拍預設無圖框。
-按 1, 2 ,3 選框。0全選。序號旁的比例越接近 2.2 越好。
-一開始按F11進入全螢幕模式。按 Ctrl + - 調整好瀏覽器的解析度，無須經常改動。
 調整瀏覽視窗大小及改變縮放比例，框的位置可能會跑掉，此時不必調整，只要點其他拍，再點回來即正常。
+新增座標檔：
 存檔在瀏覽器的「下載」(CTRL+J)，同一卷存檔超過一次，瀏覽器會依序產生<span class="filename"> xxx(1).json , xxx(2).json </span>。
 只須上傳最新的存檔，存檔的檔名必須和zip/pdf一致，即<span class="filename">0001-001天01.zip</span>的座標檔名為<span class="filename">0001-001天01.json</span>
 例如同一卷按了4次存檔，須將<span class="filename">0001-001天01(3).json</span>更名為<span class="filename">0001-001天01.json</span>再上傳。
-如果載入座標檔（載入圖檔後要立刻載入座標檔），存檔後就不是放在瀏覽器「下載」檔案夾，而是覆蓋載入的檔案。
+檢查座標檔：
+載入圖檔後，接著載入座標檔，存檔（第一次按存檔會要求寫入的權限）
+後就不是放在瀏覽器「下載」檔案夾，而是覆蓋選擇的座標檔所在位置。
 如果用施放的方式同時載入圖檔及座標檔，則按儲存一樣會放在「下載」文件夾，不會破壞原來的檔案。
-第一次按存檔會要求寫入的權限。
+按👁，逐頁檢查（產生預覽需數秒），有問題先按○標注，再一起修改，最後用預覽再檢查一次。
 </pre>
 <!--  2023.6.11 後 工資從每500拍200 改為 每300拍200 //-->
 <style>
-    pre {font-size:150%;margin:0px}
-    .title {font-size:200%}
+    pre {font-size:130%;margin:0px}
+    .title {font-size:180%}
     a{color:darkcyan}
     .filename {color:darkcyan}
 </style>

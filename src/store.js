@@ -62,7 +62,6 @@ export const selectimage=(n)=>{
     }
     totalframe.set( caltotalframe())
     nimage.set(n);
-    console.log(imgs[n])
     rotateangle.set(imgs[n]?.rotate||0);
     if (get(totalframe)) selectedframe.set(0);
 }
@@ -72,12 +71,13 @@ export const genjson=()=>{
     for (let i=0;i<imgs.length;i++) {
         const frames=[];
         const rotate=imgs[i].rotate||0;
+        const mark=imgs[i].mark||0;
         for (let j=0;j<imgs[i].frames?.length||0;j++) {
             const [x,y,w,h]=imgs[i].frames[j];
             frames.push([Math.round(x),Math.round(y),Math.round(w),Math.round(h)]);
         }
         out.push(  '{"name":"'+imgs[i].name+'","frames":'+JSON.stringify(frames)+
-        (rotate?',"rotate":'+rotate:'')+"}" );
+        (rotate?',"rotate":'+rotate:'')+(mark?',"mark":'+mark:'')+"}" );
     }
     return '['+out.join(',\n')+']';
 }
@@ -114,4 +114,9 @@ export async function getImageURL (images,nimg, store) {
         },100);
     }
     return imageurl; 
+}
+export const togglemark=(idx)=>{
+    const arr=[...get(images)];
+    arr[idx].mark=1-(arr[idx].mark||0);
+    images.set(arr);
 }
