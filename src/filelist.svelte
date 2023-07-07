@@ -14,7 +14,6 @@ import {nimage,images,selectimage,togglemark} from './store.js'
     <span class="mark" class:markon={image.mark} on:click={()=>togglemark(idx)}>{image.mark?'●':'○'}</span>
     <span class="framecount">{image.frames?.length||''}</span>
 
-
 </div>
 {/each}
 {/key}
@@ -22,7 +21,7 @@ import {nimage,images,selectimage,togglemark} from './store.js'
 <style>
 .framecount {font-weight: bold;border-bottom:1px dotted silver}
 .done {color:yellowgreen}
-.filelist {cursor:pointer;overflow-y: auto; height:90vh;}
+.filelist {cursor:pointer;overflow-y: auto; height:85vh;}
 .selected {background-color: rgb(72, 72, 72);}
 
 </style>
