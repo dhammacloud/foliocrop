@@ -109,7 +109,12 @@ export async function getImageURL (images,nimg, store) {
             width = document.getElementById('image1').width;
             r=width/naturalWidth;      
             ratio.set(r);
-            const frms=(images[nimg].frames||[defaultframe(0),defaultframe(1), defaultframe(2)]).map(f=>resizeframe(f,r));
+            let newframe=[defaultframe(0),defaultframe(1), defaultframe(2)];
+            if (nimg>0 && images[nimg-1].frames?.length==3) { //reuse
+                newframe=[].concat(images[nimg-1].frames);
+            }
+            
+            const frms=(images[nimg].frames||newframe).map(f=>resizeframe(f,r));
             frames.set( frms );
         },100);
     }
