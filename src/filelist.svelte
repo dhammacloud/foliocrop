@@ -8,9 +8,7 @@ import {nimage,images,selectimage,togglemark} from './store.js'
 {#each $images as image,idx}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class:selected={idx==$nimage} on:click={()=>selectimage(idx)}>
-    
-    <span class:done={image.frames}>{image.name}</span> 
-    
+    <span class:done={image.frames}>{image.name}</span>     
     <span class="mark" class:markon={image.mark} on:click={()=>togglemark(idx)}>{image.mark?'●':'○'}</span>
     <span class="framecount">{image.frames?.length||''}</span>
 

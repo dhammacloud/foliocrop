@@ -92,6 +92,7 @@ export const loadfile=async (file)=>{
         imgs[i].frames= json[i].frames;
         imgs[i].rotate=json[i].rotate||0;
         imgs[i].mark=json[i].mark||0;
+        imgs[i].note=json[i].note||''
     }
     images.set(imgs);
     totalframe.set( caltotalframe())

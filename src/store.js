@@ -72,12 +72,16 @@ export const genjson=()=>{
         const frames=[];
         const rotate=imgs[i].rotate||0;
         const mark=imgs[i].mark||0;
+        const note=imgs[i].note||'';
         for (let j=0;j<imgs[i].frames?.length||0;j++) {
             const [x,y,w,h]=imgs[i].frames[j];
             frames.push([Math.round(x),Math.round(y),Math.round(w),Math.round(h)]);
         }
         out.push(  '{"name":"'+imgs[i].name+'","frames":'+JSON.stringify(frames)+
-        (rotate?',"rotate":'+rotate:'')+(mark?',"mark":'+mark:'')+"}" );
+        (rotate?',"rotate":'+rotate:'')
+        +(mark?',"mark":'+mark:'')
+        +(note?',"note":'+note:'')
+        +"}" );
     }
     return '['+out.join(',\n')+']';
 }
